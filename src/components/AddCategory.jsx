@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-export const AddCategory = () => {
+export const AddCategory = ({onNewCategory}) => { // aquí recibo las props en este caso setCategories de giftexpertapp
 
-  const [inputValue, setInputValue] = useState('One Punch')
+  const [inputValue, setInputValue] = useState('')
 
   const onInputChange = ({ target }) => {
     setInputValue(target.value)
@@ -10,10 +10,15 @@ export const AddCategory = () => {
 
   const onSubmit = ( event ) => {
     event.preventDefault()
-    console.log(inputValue);
+    if (inputValue.trim().length <= 1) return // el texto debe ser >= 2 caracteres
+
+    // setCategories(categories => [inputValue, ...categories]) // aquí se agrega el input a la lista
+    onNewCategory(inputValue.trim().toLowerCase()) // lo envío sin espacios y en minúsculas
+    setInputValue('') // limpiar input
   }
   return (
-    <form onSubmit={(event) => onSubmit(event)}>
+    // es lo mismo {onSubmit} que {(event) => onSubmit(event)}
+    <form onSubmit={onSubmit}> 
       <input
         type="text"
         placeholder="Buscar gift"

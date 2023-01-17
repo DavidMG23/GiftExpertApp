@@ -1,36 +1,42 @@
-// key: daljoKoHn7lrw0WyEj2FrLKnJkY8cCVk
+
 import { useState } from "react"
 import { AddCategory } from "./components/AddCategory"
+import { GiftGrid } from "./components/GiftGrid"
 
 export const GiftExpertApp = () => {
 
   const [categories, setCategories] = useState(['One Punch', 'Dragon Ball'])
 
-  const onAddCategory = () => {
+  const onAddCategory = (newCategory) => {
+    // comprobar si la categoría existe en el []
+    if (categories.includes(newCategory)) return
+
     // agregar categorías
-    // forma 1
-    setCategories([...categories, 'Pokemon'])
-    //  forma 2
-    // setCategories( cat => [...categories, 'Pokemon'])
+    setCategories([...categories, newCategory])
+
   }
-  
+
   return (
     <>
       {/* titulo */}
       <h1>GiftExpertApp</h1>
 
       {/* Input */}
-      <AddCategory />
+      <AddCategory
+        onNewCategory={(value) => onAddCategory(value)}
+      />
 
 
       {/* Listado */}
-      <button onClick={onAddCategory}>Agregar</button>
-      <ol>
-        { categories.map( cat => {
-          return <li key={cat}>{cat}</li>
-        })}
-      </ol>
-        {/* Gif Item */}
+      {
+        categories.map((cat) => (
+          <GiftGrid
+            key={cat}
+            category={cat} />
+        ))
+      }
+
+      {/* Gif Item */}
     </>
   )
 }
