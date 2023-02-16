@@ -5,7 +5,7 @@ import { GiftGrid } from "./components/GiftGrid"
 
 export const GiftExpertApp = () => {
 
-  const [categories, setCategories] = useState(['One Punch', 'Dragon Ball'])
+  const [categories, setCategories] = useState(['Dragon Ball'])
 
   const onAddCategory = (newCategory) => {
     // comprobar si la categoría existe en el []
