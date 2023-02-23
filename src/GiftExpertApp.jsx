@@ -1,7 +1,6 @@
 
 import { useState } from "react"
-import { AddCategory } from "./components/AddCategory"
-import { GiftGrid } from "./components/GiftGrid"
+import { AddCategory, GiftGrid } from './components' // usando el archivo 'barril' index.js
 
 export const GiftExpertApp = () => {
 
